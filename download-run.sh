@@ -61,7 +61,7 @@ chmod +x alis-recovery-reboot.sh
 chmod +x alis-packages.sh
 chmod +x alis-packages-asciinema.sh
 
-pacman -Sy archlinux-keyring
-pacman -Sy archlinux-keyring && pacman -Syyu
+pacman -Sy --no-confirm archlinux-keyring
+pacman -Syyu
 
 ./alis.sh
