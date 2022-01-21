@@ -62,6 +62,6 @@ chmod +x alis-packages.sh
 chmod +x alis-packages-asciinema.sh
 
 pacman -S archlinux-keyring
-pacman -Sy archlinux-keyring && pacman -Syyu
+pacman -Sy archlinux-keyring && pacman -Sy
 
 ./alis.sh
