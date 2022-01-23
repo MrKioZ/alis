@@ -150,6 +150,7 @@ function check_variables() {
     check_variables_list "DESKTOP_ENVIRONMENT" "$DESKTOP_ENVIRONMENT" "gnome kde xfce mate cinnamon lxde i3-wm i3-gaps deepin budgie bspwm awesome qtile openbox" "false" "true"
     check_variables_boolean "PACKAGES_MULTILIB" "$PACKAGES_MULTILIB"
     check_variables_boolean "PACKAGES_INSTALL" "$PACKAGES_INSTALL"
+    check_variables_boolean "PROVISION" "$PROVISION"
     check_variables_boolean "VAGRANT" "$VAGRANT"
     check_variables_boolean "REBOOT" "$REBOOT"
 }
@@ -1566,6 +1567,12 @@ function packages() {
     fi
 }
 
+function provision() {
+    print_step "provision()"
+
+    (cd "$PROVISION_DIRECTORY" && cp -vr --parents . /mnt)
+}
+
 function vagrant() {
     pacman_install "openssh"
     create_user "vagrant" "vagrant"
@@ -1721,6 +1728,9 @@ function main() {
         execute_step "desktop_environment"
     fi
     execute_step "packages"
+    if [ "$PROVISION" == "true" ]; then
+        execute_step "provision"
+    fi
     if [ "$VAGRANT" == "true" ]; then
         execute_step "vagrant"
     fi
