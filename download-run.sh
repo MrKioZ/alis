@@ -61,4 +61,5 @@ chmod +x alis-recovery-reboot.sh
 chmod +x alis-packages.sh
 chmod +x alis-packages-asciinema.sh
 
+setfont ter-224b.psf.gz
 ./alis.sh
